@@ -1,8 +1,8 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
-MAINTAINER z4yx <z4yx@users.noreply.github.com>
+MAINTAINER rikyborg <44963821+rikyborg@users.noreply.github.com>
 
-# build with "docker build --build-arg PETA_VERSION=2020.2 --build-arg PETA_RUN_FILE=petalinux-v2020.2-final-installer.run -t petalinux:2020.2 ."
+# for build and run see README.md
 
 # install dependences:
 
@@ -10,52 +10,68 @@ ARG UBUNTU_MIRROR
 RUN [ -z "${UBUNTU_MIRROR}" ] || sed -i.bak s/archive.ubuntu.com/${UBUNTU_MIRROR}/g /etc/apt/sources.list 
 
 RUN apt-get update &&  DEBIAN_FRONTEND=noninteractive apt-get install -y -q \
-  build-essential \
-  sudo \
-  tofrodos \
-  iproute2 \
-  gawk \
-  net-tools \
-  expect \
-  libncurses5-dev \
-  tftpd \
-  update-inetd \
-  libssl-dev \
-  flex \
-  bison \
-  libselinux1 \
-  gnupg \
-  wget \
-  socat \
-  gcc-multilib \
-  libidn11 \
-  libsdl1.2-dev \
-  libglib2.0-dev \
-  lib32z1-dev \
-  libgtk2.0-0 \
-  libtinfo5 \
-  xxd \
-  screen \
-  pax \
-  diffstat \
-  xvfb \
-  xterm \
-  texinfo \
-  gzip \
-  unzip \
-  cpio \
-  chrpath \
   autoconf \
-  lsb-release \
+  automake \
+  bc \
+  bison \
+  build-essential \
+  chrpath \
+  cpio \
+  debianutils \
+  diffstat \
+  expect \
+  flex \
+  gawk \
+  gcc \
+  gcc-multilib \
+  git \
+  git-core \
+  gnupg \
+  gzip \
+  iproute2 \
+  iputils-ping \
+  kmod \
+  lib32z1-dev \
+  libegl1-mesa \
+  libglib2.0-dev \
+  libgtk2.0-0 \
+  libidn11 \
+  libncurses5-dev \
+  libsdl1.2-dev \
+  libselinux1 \
+  libssl-dev \
+  libtinfo5 \
   libtool \
   libtool-bin \
   locales \
-  kmod \
-  git \
-  rsync \
-  bc \
-  u-boot-tools \
+  lsb-release \
+  make \
+  net-tools \
+  pax \
+  pylint3 \
   python \
+  python3 \
+  python3-git \
+  python3-jinja2 \
+  python3-pexpect \
+  python3-pip \
+  rsync \
+  screen \
+  socat \
+  sudo \
+  tar \
+  texinfo \
+  tftpd \
+  tofrodos \
+  u-boot-tools \
+  unzip \
+  update-inetd \
+  wget \
+  xterm \
+  xvfb \
+  xxd \
+  xz-utils \
+  zlib1g-dev \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
@@ -94,8 +110,8 @@ RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 USER vivado
 ENV HOME /home/vivado
 ENV LANG en_US.UTF-8
-RUN mkdir /home/vivado/project
-WORKDIR /home/vivado/project
+RUN mkdir /home/vivado/projects
+WORKDIR /home/vivado/projects
 
 #add vivado tools to path
 RUN echo "source /opt/Xilinx/petalinux/settings.sh" >> /home/vivado/.bashrc
