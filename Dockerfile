@@ -16,8 +16,11 @@ RUN apt-get update &&  DEBIAN_FRONTEND=noninteractive apt-get install -y -q \
   bison \
   build-essential \
   chrpath \
+  # clang \
   cpio \
+  # curl \
   debianutils \
+  device-tree-compiler \
   diffstat \
   expect \
   flex \
@@ -32,23 +35,25 @@ RUN apt-get update &&  DEBIAN_FRONTEND=noninteractive apt-get install -y -q \
   iputils-ping \
   kmod \
   lib32z1-dev \
+  # libclang-dev \
   libegl1-mesa \
   libglib2.0-dev \
   libgtk2.0-0 \
   libidn11 \
-  libncurses5-dev \
+  libncurses-dev \
   libsdl1.2-dev \
   libselinux1 \
   libssl-dev \
   libtinfo5 \
   libtool \
   libtool-bin \
+  # llvm-dev \
   locales \
   lsb-release \
   make \
   net-tools \
   pax \
-  pylint3 \
+  pylint \
   python \
   python3 \
   python3-git \
@@ -66,6 +71,7 @@ RUN apt-get update &&  DEBIAN_FRONTEND=noninteractive apt-get install -y -q \
   u-boot-tools \
   unzip \
   update-inetd \
+  vim \
   wget \
   xterm \
   xvfb \
