@@ -3,8 +3,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 MAINTAINER rikyborg <44963821+rikyborg@users.noreply.github.com>
 
-ARG UBUNTU_MIRROR
-RUN [ -z "${UBUNTU_MIRROR}" ] || sed -i.bak s/archive.ubuntu.com/${UBUNTU_MIRROR}/g /etc/apt/sources.list 
+ARG PETA_RUN_FILE=petalinux-v2023.2-10121855-installer.run
 
 RUN \
   apt-get update -y && \
@@ -91,10 +90,6 @@ RUN \
   apt-get autoclean && \
   rm -rf /var/lib/apt/lists/*
 
-
-ARG PETA_VERSION
-ARG PETA_RUN_FILE
-
 RUN \
   locale-gen en_US.UTF-8 && \
   update-locale LANG=en_US.UTF-8
@@ -117,7 +112,7 @@ RUN chmod a+rx /${PETA_RUN_FILE} && \
 
 # make /bin/sh symlink to bash instead of dash:
 RUN echo "dash dash/sh boolean false" | debconf-set-selections
-RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
+RUN dpkg-reconfigure dash
 
 USER vivado
 ENV HOME /home/vivado
